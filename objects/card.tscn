@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgdrfwtew8mhi"]
+
+[ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_1qgkf"]
+[ext_resource type="Script" path="res://objects/playable_card.gd" id="1_yvedv"]
+[ext_resource type="Texture2D" uid="uid://1ab78e07i7fs" path="res://textures/rooms/room_spell.tres" id="2_0mn7q"]
+[ext_resource type="Texture2D" uid="uid://d4h5stejrsc21" path="res://textures/items/mana.tres" id="3_ccrmr"]
+[ext_resource type="Texture2D" uid="uid://dml0ml0l8vugp" path="res://textures/rooms/room_item.tres" id="3_yhkgl"]
+[ext_resource type="Texture2D" uid="uid://bptkfyl353rvx" path="res://textures/rooms/room_enemy.tres" id="4_bd36c"]
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(192, 360)
+layout_mode = 3
+anchor_right = 0.156
+anchor_bottom = 0.533
+offset_right = 0.319992
+offset_bottom = 8.23996
+theme = ExtResource("1_1qgkf")
+script = ExtResource("1_yvedv")
+item_bg = ExtResource("3_yhkgl")
+enemy_bg = ExtResource("4_bd36c")
+spell_bg = ExtResource("2_0mn7q")
+
+[node name="InfoBg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.04
+anchor_bottom = 1.021
+offset_right = -8.32002
+offset_bottom = -8.23203
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105516, 0.148989, 0.195895, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.156
+anchor_right = 1.0
+anchor_bottom = 0.666
+offset_top = -0.16
+offset_bottom = -0.0799866
+texture = ExtResource("2_0mn7q")
+
+[node name="Item" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.356
+anchor_right = 0.667
+anchor_bottom = 0.511
+offset_top = -0.160004
+offset_right = -0.0640106
+offset_bottom = 0.0399933
+texture = ExtResource("3_ccrmr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.694
+anchor_right = 0.96
+anchor_bottom = 0.959
+offset_top = -0.0480042
+offset_bottom = 0.071991
+grow_horizontal = 2
+grow_vertical = 2
+text = "Fight a goblin and die for attacking a poor goblin :("
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.208
+anchor_bottom = 0.156
+offset_right = 0.0639992
+offset_bottom = 0.0639992
+theme_override_font_sizes/font_size = 24
+text = "-2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.833
+anchor_right = 1.0
+anchor_bottom = 0.156
+offset_left = -6.60001
+offset_right = 1.672
+offset_bottom = 0.0639992
+theme_override_font_sizes/font_size = 24
+text = "-2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.208
+anchor_right = 0.833
+anchor_bottom = 0.156
+offset_left = 0.0639992
+offset_right = 0.0639954
+offset_bottom = 0.0639992
+theme_override_font_sizes/font_size = 16
+text = "Mana potion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

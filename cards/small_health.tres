@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cur4op2thv28u"]
+
+[ext_resource type="Script" path="res://objects/card.gd" id="1_ni02k"]
+[ext_resource type="Texture2D" uid="uid://c3cqr6iolyo2" path="res://textures/items/health.tres" id="1_xk16t"]
+
+[resource]
+script = ExtResource("1_ni02k")
+name = "Health vial"
+description = "A small health potion that is certified to work on goblins"
+health_cost = 2
+mana_cost = 0
+background = 0
+icon = ExtResource("1_xk16t")

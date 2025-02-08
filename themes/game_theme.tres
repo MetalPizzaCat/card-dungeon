@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dgdf26xsndhdf"]
+
+[ext_resource type="FontFile" uid="uid://dwefhx08v0nht" path="res://font/MorePerfectDOSVGA.ttf" id="1_mm1c6"]
+
+[resource]
+default_font = ExtResource("1_mm1c6")
+HBoxContainer/constants/separation = 10
