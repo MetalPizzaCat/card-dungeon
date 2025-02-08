@@ -10,6 +10,7 @@ signal card_used(card: Card, playable_id: int)
 
 @onready var background: TextureRect = $Background
 @onready var item_icon: TextureRect = $Item
+@onready var button : Button = $Button
 
 
 @export var card: Card:
@@ -32,8 +33,16 @@ signal card_used(card: Card, playable_id: int)
 			item_icon.texture = value.icon
 
 var _card: Card
+var _playable : bool = true
 
 @export var card_id: int = -1
+
+var playable : bool:
+	get:
+		return _playable
+	set(value):
+		button.disabled = not value
+		_playable = value
 
 @export_group("Card textures")
 @export var item_bg: Texture
@@ -41,4 +50,5 @@ var _card: Card
 @export var spell_bg: Texture
 
 func _on_button_pressed() -> void:
-	card_used.emit(card, card_id)
+	if playable:
+		card_used.emit(card, card_id)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcr3d4de0e2be"]
+[gd_scene load_steps=15 format=3 uid="uid://bcr3d4de0e2be"]
 
 [ext_resource type="Script" path="res://scenes/dungeon.gd" id="1_j228u"]
 [ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_ndho6"]
@@ -7,7 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://cwjcqvnt4o8sy" path="res://scenes/gradient.tres" id="4_e6hvh"]
 [ext_resource type="Script" path="res://objects/card.gd" id="4_tiegs"]
 [ext_resource type="Resource" uid="uid://cur4op2thv28u" path="res://cards/small_health.tres" id="5_hqfj0"]
+[ext_resource type="Texture2D" uid="uid://5ecnlppi5wun" path="res://icon.svg" id="8_ulyup"]
 [ext_resource type="Script" path="res://objects/player.gd" id="8_w3mj3"]
+[ext_resource type="PackedScene" uid="uid://cjnbroxelm144" path="res://objects/stat_display.tscn" id="10_ya12q"]
+[ext_resource type="Texture2D" uid="uid://84go5vmyn88j" path="res://textures/stats/health_empty.tres" id="11_rvmub"]
+[ext_resource type="Texture2D" uid="uid://cr5pte272iida" path="res://textures/stats/health_full.tres" id="12_oglok"]
+[ext_resource type="Texture2D" uid="uid://bbpdowscvd1bl" path="res://textures/stats/mana_empty.tres" id="13_m5m1f"]
+[ext_resource type="Texture2D" uid="uid://de6v3rcgaj3q5" path="res://textures/stats/mana_full.tres" id="14_cfnwc"]
 
 [node name="Dungeon" type="Control"]
 layout_mode = 3
@@ -31,31 +37,17 @@ offset_right = 720.0
 offset_bottom = 2005.0
 rotation = 4.71239
 texture = ExtResource("4_e6hvh")
-stretch_mode = 1
 
 [node name="Hand" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 136.0
-offset_top = 256.0
+offset_top = 320.0
 offset_right = 1136.0
-offset_bottom = 616.0
+offset_bottom = 680.0
 alignment = 1
 
-[node name="InfoBg" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.04
-anchor_bottom = 1.021
-offset_left = 1224.0
-offset_top = 24.0
-offset_right = 1416.0
-offset_bottom = 384.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5708
-color = Color(0.105516, 0.148989, 0.195895, 1)
-
 [node name="InfoBg2" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.04
@@ -71,3 +63,71 @@ color = Color(0.105516, 0.148989, 0.195895, 1)
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("8_w3mj3")
+
+[node name="Card" parent="." instance=ExtResource("3_efa7a")]
+visible = false
+layout_mode = 1
+offset_left = 40.0
+offset_top = 184.0
+offset_right = 232.0
+offset_bottom = 544.0
+rotation = -1.55047
+
+[node name="CardSpawnPos" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 104.0
+offset_top = -40.0
+offset_right = 144.0
+
+[node name="HealthDisplay" parent="." instance=ExtResource("10_ya12q")]
+layout_mode = 1
+offset_left = 368.0
+offset_top = 24.0
+offset_right = 864.0
+offset_bottom = 64.0
+max_value = 10
+current_value = 10
+full_texture = ExtResource("11_rvmub")
+empty_texture = ExtResource("12_oglok")
+
+[node name="ManaDisplay" parent="." instance=ExtResource("10_ya12q")]
+layout_mode = 1
+offset_left = 368.0
+offset_top = 72.0
+offset_right = 864.0
+offset_bottom = 112.0
+max_value = 10
+current_value = 10
+full_texture = ExtResource("13_m5m1f")
+empty_texture = ExtResource("14_cfnwc")
+
+[node name="DeckDisplay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 1248.0
+offset_top = 32.0
+offset_right = 1288.0
+offset_bottom = 72.0
+
+[node name="InfoBg" type="ColorRect" parent="DeckDisplay"]
+layout_mode = 1
+offset_right = 192.0
+offset_bottom = 360.0
+rotation = 1.5708
+color = Color(0.356619, 0.384451, 0.396185, 1)
+
+[node name="CardIcon2" type="Sprite2D" parent="DeckDisplay/InfoBg"]
+position = Vector2(96.0007, 176)
+rotation = -1.5708
+scale = Vector2(8.68976, 8.68976)
+texture = ExtResource("8_ulyup")
+
+[node name="CardsRemainingLabel" type="Label" parent="DeckDisplay"]
+layout_mode = 1
+offset_left = -232.0
+offset_top = 200.0
+offset_right = -160.0
+offset_bottom = 264.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "55"

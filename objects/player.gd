@@ -1,5 +1,5 @@
 extends Node
-
+class_name Player
 signal died
 
 @export var health: int = 4;

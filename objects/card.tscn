@@ -10,10 +10,11 @@
 [node name="Card" type="Control"]
 custom_minimum_size = Vector2(192, 360)
 layout_mode = 3
-anchor_right = 0.156
-anchor_bottom = 0.533
-offset_right = 0.319992
-offset_bottom = 8.23996
+anchor_right = 0.15
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(104, 176)
 theme = ExtResource("1_1qgkf")
 script = ExtResource("1_yvedv")
 item_bg = ExtResource("3_yhkgl")
