@@ -21,8 +21,8 @@ signal card_used(card: Card, playable_id: int)
 		if value != null:
 			name_label.text = value.name
 			description.text = value.description
-			health_label.text = str(value.health_cost)
-			mana_label.text = str(value.mana_cost)
+			health_label.text = str(-value.health_cost)
+			mana_label.text = str(-value.mana_cost)
 			match value.background:
 				Card.BackgroundType.Item:
 					background.texture = item_bg

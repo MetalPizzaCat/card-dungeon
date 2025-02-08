@@ -7,7 +7,11 @@
 script = ExtResource("1_ni02k")
 name = "Health vial"
 description = "A small health potion that is certified to work on goblins"
-health_cost = 2
+health_cost = -2
 mana_cost = 0
+effect = 0
 background = 0
 icon = ExtResource("1_xk16t")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

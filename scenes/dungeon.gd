@@ -3,15 +3,23 @@ extends Control
 
 @export var hand_size: int = 5
 @export var card_prefab: PackedScene
-## Array of cards that can currently be drawn
 @export var possible_cards: Array[Card] = []
-@export var deck_size: int = 6
 
 var used_cards: Array[PlayableCard] = []
 var deck: Array[Card] = []
-var player_hand: Array[Card] = []
+@export var deck_size: int = 6
 
 var playable_cards: Array[PlayableCard] = []
+
+@onready var hand_box: HBoxContainer = $Hand
+@onready var player: Player = $Player
+@onready var card_spawn_pos: Control = $CardSpawnPos
+
+@onready var deck_size_label: Label = $DeckDisplay/CardsRemainingLabel
+@onready var deck_display: Control = $DeckDisplay/InfoBg
+
+@onready var health_display: StatDisplay = $HealthDisplay
+@onready var mana_display: StatDisplay = $ManaDisplay
 
 @onready var current_deck_size: int:
 	get:
@@ -22,18 +30,7 @@ var playable_cards: Array[PlayableCard] = []
 			deck_size_label.text = str(current_deck_size)
 		deck_display.visible = value > 0
 
-
-@onready var hand_box: HBoxContainer = $Hand
-@onready var player: Player = $Player
-@onready var card_spawn_pos: Control = $CardSpawnPos
-@onready var deck_size_label: Label = $DeckDisplay/CardsRemainingLabel
-@onready var deck_display : Control = $DeckDisplay/InfoBg
-
-@onready var health_display : StatDisplay = $HealthDisplay
-@onready var mana_display : StatDisplay = $ManaDisplay
-
-
-var _current_deck_size : int
+var _current_deck_size: int
 
 func draw_card() -> bool:
 	if possible_cards.is_empty():
@@ -71,18 +68,20 @@ func draw_initial_cards() -> void:
 		else:
 			break
 		
-		
+
 func use_card(card: Card, id: int) -> void:
-	player.add_health(card.health_cost)
-	player.add_mana(card.mana_cost)
+	if card.mana_cost <= player.mana:
+		player.add_health(-card.health_cost)
+		player.add_mana(-card.mana_cost)
+		player.apply_effect(card)
 
 	var playable: PlayableCard = playable_cards[id]
-	# TODO: Apply special effects
 	hand_box.remove_child(playable)
 	# we need to add visual card into discarded pile
 	_add_discarded_card(playable)
 	# remove the card from hand
-	playable_cards.remove_at(id)
+	playable_cards.erase(playable)
+	
 	_re_id_cards()
 	draw_card()
 
@@ -97,9 +96,24 @@ func _add_discarded_card(card: PlayableCard) -> void:
 		card_spawn_pos.remove_child(used_cards[0])
 		used_cards.remove_at(0)
 
-
 func _re_id_cards() -> void:
 	var i = 0
 	for card in playable_cards:
 		card.card_id = i
 		i += 1
+
+
+func _on_player_health_changed(health: int) -> void:
+	health_display.current_value = health
+
+
+func _on_player_mana_changed(mana: int) -> void:
+	mana_display.current_value = mana
+
+
+func _on_player_max_health_changed(max_health: int) -> void:
+	health_display.max_value = max_health
+
+
+func _on_player_max_mana_changed(max_mana: int) -> void:
+	mana_display.max_value = max_mana

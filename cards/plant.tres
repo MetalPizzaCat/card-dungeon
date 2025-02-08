@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dv8a3dyg8n8th"]
+
+[ext_resource type="Script" path="res://objects/card.gd" id="1_8hkg5"]
+[ext_resource type="Texture2D" uid="uid://bfp02g362oc7d" path="res://textures/items/plant.tres" id="1_rhs0f"]
+
+[resource]
+script = ExtResource("1_8hkg5")
+name = "Plant"
+description = "Goblin eating plant"
+health_cost = 2
+mana_cost = 0
+effect = 0
+background = 1
+icon = ExtResource("1_rhs0f")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

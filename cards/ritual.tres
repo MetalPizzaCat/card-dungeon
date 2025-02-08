@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://c556oggh6qvms"]
+
+[ext_resource type="Script" path="res://objects/card.gd" id="1_cc8g7"]
+[ext_resource type="Texture2D" uid="uid://b1rsflfhe31tb" path="res://textures/items/spell.tres" id="1_p5ggt"]
+
+[resource]
+script = ExtResource("1_cc8g7")
+name = "Ritual"
+description = "Swap health and mana. Neither will go above max values"
+health_cost = 0
+mana_cost = 0
+effect = 1
+background = 2
+icon = ExtResource("1_p5ggt")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0
