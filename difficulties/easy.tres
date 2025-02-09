@@ -1,9 +1,32 @@
-[gd_resource type="Resource" script_class="Difficulty" load_steps=2 format=3 uid="uid://dhjm8j1du734k"]
+[gd_resource type="Resource" script_class="Difficulty" load_steps=14 format=3 uid="uid://dhjm8j1du734k"]
 
 [ext_resource type="Script" path="res://game/difficulty.gd" id="1_qxocb"]
+[ext_resource type="Script" path="res://objects/deck.gd" id="1_x6oxp"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_euerq"]
+[ext_resource type="Resource" uid="uid://dv8a3dyg8n8th" path="res://cards/plant.tres" id="3_n54bg"]
+[ext_resource type="Resource" uid="uid://du7mbwvsbwnup" path="res://cards/shield.tres" id="4_ktjuy"]
+[ext_resource type="Resource" uid="uid://bcat4t65o1rch" path="res://cards/training_dummy.tres" id="5_o6ayt"]
+[ext_resource type="Resource" uid="uid://b7rpkwiqd70qu" path="res://cards/small_mana.tres" id="6_7mo0u"]
+[ext_resource type="Resource" uid="uid://cur4op2thv28u" path="res://cards/small_health.tres" id="7_we124"]
+[ext_resource type="Resource" uid="uid://dnr0kp7rog5rf" path="res://cards/slime.tres" id="8_5cq4s"]
+[ext_resource type="Resource" uid="uid://ek6a6x3sdi3i" path="res://cards/magic_water.tres" id="9_35ehe"]
+
+[sub_resource type="Resource" id="Resource_sy262"]
+script = ExtResource("1_x6oxp")
+cards = Array[ExtResource("2_euerq")]([ExtResource("3_n54bg"), ExtResource("4_ktjuy"), ExtResource("5_o6ayt"), ExtResource("6_7mo0u"), ExtResource("7_we124"), ExtResource("7_we124"), ExtResource("3_n54bg"), ExtResource("5_o6ayt")])
+
+[sub_resource type="Resource" id="Resource_gvrys"]
+script = ExtResource("1_x6oxp")
+cards = Array[ExtResource("2_euerq")]([ExtResource("8_5cq4s"), ExtResource("8_5cq4s"), ExtResource("3_n54bg"), ExtResource("7_we124")])
+
+[sub_resource type="Resource" id="Resource_qnsjq"]
+script = ExtResource("1_x6oxp")
+cards = Array[ExtResource("2_euerq")]([ExtResource("5_o6ayt"), ExtResource("6_7mo0u"), ExtResource("8_5cq4s"), ExtResource("9_35ehe"), ExtResource("9_35ehe")])
 
 [resource]
 script = ExtResource("1_qxocb")
 name = "Easy"
 description = "Clear the deck 4 times, with plenty of items and few enemies"
+deck_size = 12
 required_deck_clears = 4
+deck_additions = Array[ExtResource("1_x6oxp")]([SubResource("Resource_sy262"), SubResource("Resource_gvrys"), SubResource("Resource_qnsjq")])

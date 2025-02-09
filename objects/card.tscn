@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgdrfwtew8mhi"]
+[gd_scene load_steps=8 format=3 uid="uid://bgdrfwtew8mhi"]
 
 [ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_1qgkf"]
 [ext_resource type="Script" path="res://objects/playable_card.gd" id="1_yvedv"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://d4h5stejrsc21" path="res://textures/items/mana.tres" id="3_ccrmr"]
 [ext_resource type="Texture2D" uid="uid://dml0ml0l8vugp" path="res://textures/rooms/room_item.tres" id="3_yhkgl"]
 [ext_resource type="Texture2D" uid="uid://bptkfyl353rvx" path="res://textures/rooms/room_enemy.tres" id="4_bd36c"]
+[ext_resource type="FontFile" uid="uid://dwefhx08v0nht" path="res://font/MorePerfectDOSVGA.ttf" id="7_cta6k"]
 
 [node name="Card" type="Control"]
+texture_filter = 1
 custom_minimum_size = Vector2(192, 360)
 layout_mode = 3
 anchor_right = 0.15
@@ -64,7 +66,9 @@ offset_top = -0.0480042
 offset_bottom = 0.071991
 grow_horizontal = 2
 grow_vertical = 2
-text = "Fight a goblin and die for attacking a poor goblin :("
+theme_override_fonts/normal_font = ExtResource("7_cta6k")
+theme_override_font_sizes/normal_font_size = 18
+text = "Reduce max health by 2 and add 2 to next damage to max health "
 
 [node name="HealthLabel" type="Label" parent="."]
 modulate = Color(0.988235, 0, 0, 1)
@@ -103,7 +107,7 @@ anchor_bottom = 0.156
 offset_left = 0.0639992
 offset_right = 0.0639954
 offset_bottom = 0.0639992
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "Mana potion"
 horizontal_alignment = 1
 vertical_alignment = 1

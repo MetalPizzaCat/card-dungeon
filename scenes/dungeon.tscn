@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bcr3d4de0e2be"]
+[gd_scene load_steps=32 format=3 uid="uid://bcr3d4de0e2be"]
 
 [ext_resource type="Script" path="res://scenes/dungeon.gd" id="1_j228u"]
 [ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_ndho6"]
@@ -26,6 +26,120 @@
 [ext_resource type="Resource" uid="uid://du7mbwvsbwnup" path="res://cards/shield.tres" id="16_xqucn"]
 [ext_resource type="Resource" uid="uid://dghtc0rhr2v8j" path="res://cards/rat.tres" id="17_7euih"]
 [ext_resource type="Texture2D" uid="uid://c1fhephy37xcn" path="res://textures/card_icon.svg" id="17_yuah5"]
+[ext_resource type="PackedScene" uid="uid://duelks2gfiai" path="res://scenes/main_menu.tscn" id="18_3ro3n"]
+
+[sub_resource type="Animation" id="Animation_gvsy7"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_27v4h"]
+resource_name = "victory"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VictoryScreen:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -728), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VictoryScreen/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0.776471)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VictoryScreen/ExitButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.93333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sxqii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VictoryScreen:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -728)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VictoryScreen/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VictoryScreen/ExitButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qo0ib"]
+_data = {
+"RESET": SubResource("Animation_sxqii"),
+"fade_in": SubResource("Animation_gvsy7"),
+"victory": SubResource("Animation_27v4h")
+}
 
 [node name="Dungeon" type="Control"]
 layout_mode = 3
@@ -34,7 +148,7 @@ theme = ExtResource("1_ndho6")
 script = ExtResource("1_j228u")
 card_prefab = ExtResource("3_efa7a")
 possible_cards = Array[ExtResource("4_tiegs")]([ExtResource("5_hqfj0"), ExtResource("6_dxsko"), ExtResource("7_ctuia"), ExtResource("8_ctm1v"), ExtResource("5_hqfj0"), ExtResource("9_erqft"), ExtResource("10_xyhds"), ExtResource("11_hheoj"), ExtResource("12_5431e"), ExtResource("13_8frhe"), ExtResource("14_rbf84"), ExtResource("15_tvqe6"), ExtResource("16_xqucn"), ExtResource("17_7euih")])
-deck_size = 12
+main_menu_scene = ExtResource("18_3ro3n")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -145,7 +259,66 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "55"
 
+[node name="VictoryScreen" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -728.0
+offset_right = 1280.0
+offset_bottom = -8.0
+
+[node name="ColorRect" type="ColorRect" parent="VictoryScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VictoryScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -144.0
+offset_right = 460.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[wave][rainbow]Victory![/rainbow][/wave]"
+
+[node name="ExitButton" type="Button" parent="VictoryScreen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 472.0
+offset_top = 424.0
+offset_right = 723.0
+offset_bottom = 480.0
+text = "Main menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qo0ib")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1288.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
 [connection signal="mana_changed" from="Player" to="." method="_on_player_mana_changed"]
 [connection signal="max_health_changed" from="Player" to="." method="_on_player_max_health_changed"]
 [connection signal="max_mana_changed" from="Player" to="." method="_on_player_max_mana_changed"]
+[connection signal="pressed" from="VictoryScreen/ExitButton" to="." method="_on_exit_button_pressed"]
