@@ -1,9 +1,49 @@
-[gd_scene load_steps=5 format=3 uid="uid://duelks2gfiai"]
+[gd_scene load_steps=12 format=3 uid="uid://duelks2gfiai"]
 
 [ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_1xn57"]
 [ext_resource type="Texture2D" uid="uid://d0w2s8w8a66sa" path="res://textures/rock_wall.png" id="1_bwyvu"]
 [ext_resource type="Texture2D" uid="uid://cwjcqvnt4o8sy" path="res://scenes/gradient.tres" id="2_dcsgs"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="2_k1rnm"]
+[ext_resource type="Script" path="res://game/difficulty.gd" id="3_agm0q"]
+[ext_resource type="Resource" uid="uid://dhjm8j1du734k" path="res://difficulties/easy.tres" id="4_h544q"]
+[ext_resource type="Resource" uid="uid://cirr7njydwnsv" path="res://difficulties/normal.tres" id="5_g73ta"]
+[ext_resource type="PackedScene" uid="uid://bcr3d4de0e2be" path="res://scenes/dungeon.tscn" id="6_5uyfd"]
+
+[sub_resource type="Animation" id="Animation_5ghbh"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0wr1g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gkix"]
+_data = {
+"RESET": SubResource("Animation_0wr1g"),
+"fade_out": SubResource("Animation_5ghbh")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,6 +54,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_1xn57")
 script = ExtResource("2_k1rnm")
+difficulties = Array[ExtResource("3_agm0q")]([ExtResource("4_h544q"), ExtResource("5_g73ta")])
+card_scene = ExtResource("6_5uyfd")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -63,10 +105,6 @@ offset_bottom = 102.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ExitButton" type="Button" parent="MainOptions"]
-layout_mode = 2
-text = "Exit"
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 8.0
@@ -90,13 +128,26 @@ offset_bottom = 102.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackButton" type="Button" parent="OptionsContainer"]
-visible = false
+[node name="DifficultyOptions" type="VBoxContainer" parent="OptionsContainer"]
 layout_mode = 2
-text = "Back"
 
-[node name="ExitButton" type="Button" parent="OptionsContainer"]
+[node name="ExitButton2" type="Button" parent="OptionsContainer"]
 layout_mode = 2
 text = "Exit"
 
-[connection signal="pressed" from="OptionsContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5gkix")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="pressed" from="OptionsContainer/ExitButton2" to="." method="_on_exit_button_pressed"]

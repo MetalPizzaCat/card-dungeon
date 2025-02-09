@@ -5,7 +5,7 @@ signal selected(difficulty : Difficulty)
 
 var difficulty : Difficulty:
     get:
-        return difficulty
+        return _difficulty
     set(value):
         _difficulty = value
         text = value.name

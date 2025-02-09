@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Difficulty" load_steps=2 format=3 uid="uid://cirr7njydwnsv"]
+
+[ext_resource type="Script" path="res://game/difficulty.gd" id="1_mve0c"]
+
+[resource]
+script = ExtResource("1_mve0c")
+name = "Normal"
+description = "Clear the deck 6 times, with new enemies and spells added"
+required_deck_clears = 6

@@ -21,6 +21,8 @@ var playable_cards: Array[PlayableCard] = []
 @onready var health_display: StatDisplay = $HealthDisplay
 @onready var mana_display: StatDisplay = $ManaDisplay
 
+@onready var manager : Manager = get_node("/root/GameManager")
+
 @onready var current_deck_size: int:
 	get:
 		return _current_deck_size
@@ -50,6 +52,8 @@ func draw_card() -> bool:
 
 
 func _ready() -> void:
+	if manager.difficulty != null:
+		print("playing: %s" % manager.difficulty.name)
 	current_deck_size = deck_size
 	draw_initial_cards()
 	health_display.max_value = player.max_health
