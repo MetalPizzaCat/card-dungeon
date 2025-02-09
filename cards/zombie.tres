@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://bv2xs5qj5l84v"]
+
+[ext_resource type="Texture2D" uid="uid://j782oewid1vq" path="res://textures/items/zombie.tres" id="1_uccce"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_uqv7u"]
+
+[resource]
+script = ExtResource("2_uqv7u")
+name = "Zombie"
+description = "Reduce max health by 2 and add 2 to next damage to max health "
+health_cost = 0
+mana_cost = 0
+effect = 9
+background = 1
+icon = ExtResource("1_uccce")
+max_hp_change = -2
+max_mp_change = 0
+damage_modifier = 0

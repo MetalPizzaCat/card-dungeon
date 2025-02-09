@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://trdhapjfuvxv"]
+
+[ext_resource type="Texture2D" uid="uid://c80shrakueahj" path="res://textures/items/plague.tres" id="1_tblaw"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_n6who"]
+
+[resource]
+script = ExtResource("2_n6who")
+name = "Plague"
+description = "Magical plague that decreases max health by 2"
+health_cost = 0
+mana_cost = 0
+effect = 9
+background = 1
+icon = ExtResource("1_tblaw")
+max_hp_change = -2
+max_mp_change = 0
+damage_modifier = 0

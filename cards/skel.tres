@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://mec1ortjx0gn"]
+
+[ext_resource type="Texture2D" uid="uid://dir2dkv2xxjq1" path="res://textures/items/skeleton.tres" id="1_jy10q"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_n6p1x"]
+
+[resource]
+script = ExtResource("2_n6p1x")
+name = "Skeleton"
+description = "Add 4 damage to next hit"
+health_cost = 4
+mana_cost = 0
+effect = 3
+background = 1
+icon = ExtResource("1_jy10q")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

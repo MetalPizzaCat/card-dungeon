@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://ek6a6x3sdi3i"]
+
+[ext_resource type="Texture2D" uid="uid://daq3mps3vmel5" path="res://textures/items/water.tres" id="1_0ncwj"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_klgjn"]
+
+[resource]
+script = ExtResource("2_klgjn")
+name = "Energy pool"
+description = "Increase max mana by 1"
+health_cost = 0
+mana_cost = 4
+effect = 10
+background = 2
+icon = ExtResource("1_0ncwj")
+max_hp_change = 0
+max_mp_change = 1
+damage_modifier = 0

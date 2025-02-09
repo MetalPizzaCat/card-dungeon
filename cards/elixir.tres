@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cglp2bdj81uj4"]
 
-[ext_resource type="Texture2D" uid="uid://c3cqr6iolyo2" path="res://textures/items/health.tres" id="1_dg4wf"]
+[ext_resource type="Texture2D" uid="uid://sn1x5m4uprnd" path="res://textures/items/elixir.tres" id="1_13ius"]
 [ext_resource type="Script" path="res://objects/card.gd" id="2_76noc"]
 
 [resource]
@@ -8,6 +8,10 @@ script = ExtResource("2_76noc")
 name = "Elixir"
 description = "Remove all damage additions"
 health_cost = 0
-mana_cost = -9
+mana_cost = 9
+effect = 11
 background = 0
-icon = ExtResource("1_dg4wf")
+icon = ExtResource("1_13ius")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

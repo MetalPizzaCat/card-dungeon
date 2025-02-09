@@ -71,8 +71,6 @@ func draw_initial_cards() -> void:
 
 func use_card(card: Card, id: int) -> void:
 	if card.mana_cost <= player.mana:
-		player.add_health(-card.health_cost)
-		player.add_mana(-card.mana_cost)
 		player.apply_effect(card)
 
 	var playable: PlayableCard = playable_cards[id]
@@ -92,8 +90,8 @@ func _add_discarded_card(card: PlayableCard) -> void:
 	card.rotation_degrees = randf_range(-70, 120)
 	card.position = Vector2(randf_range(-20, 20), randf_range(-20, 20))
 	if used_cards.size() > 6:
-		used_cards[0].queue_free()
 		card_spawn_pos.remove_child(used_cards[0])
+		used_cards[0].queue_free()
 		used_cards.remove_at(0)
 
 func _re_id_cards() -> void:

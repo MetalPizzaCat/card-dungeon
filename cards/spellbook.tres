@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://d3vpvv3ydsdli"]
+
+[ext_resource type="Texture2D" uid="uid://crwfd0np3sr5n" path="res://textures/items/spellbook.tres" id="1_g7agn"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_lsapi"]
+
+[resource]
+script = ExtResource("2_lsapi")
+name = "Energy Spell"
+description = "Invert mana, it will now be Max - Current"
+health_cost = 0
+mana_cost = 0
+effect = 11
+background = 2
+icon = ExtResource("1_g7agn")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dghtc0rhr2v8j"]
+
+[ext_resource type="Texture2D" uid="uid://mrwdgsm7lj1p" path="res://textures/items/rat.tres" id="1_nclr0"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_sqhta"]
+
+[resource]
+script = ExtResource("2_sqhta")
+name = "Rat"
+description = "Add 2 damage to next hit"
+health_cost = 2
+mana_cost = 0
+effect = 3
+background = 1
+icon = ExtResource("1_nclr0")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

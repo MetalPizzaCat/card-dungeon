@@ -4,8 +4,8 @@ signal died
 
 signal health_changed(health: int)
 signal mana_changed(mana: int)
-signal max_health_changed(max_health : int)
-signal max_mana_changed(max_mana : int)
+signal max_health_changed(max_health: int)
+signal max_mana_changed(max_mana: int)
 signal hand_clear_used
 
 
@@ -33,6 +33,7 @@ var _mana: int = 4
 
 
 var damage_modifier: int = 1
+var max_hp_modifier: int = 0
 var has_fire: bool = false
 var has_duplication: bool = false
 var has_bell: bool = false
@@ -52,6 +53,11 @@ func swap_stats() -> void:
     mana = h
 
 func apply_effect(card: Card) -> void:
+    if has_shield:
+        has_shield = false
+        return
+    add_health(-card.health_cost)
+    add_mana(-card.mana_cost)
     if has_bell:
         has_bell = false
         return
@@ -74,7 +80,12 @@ func apply_effect(card: Card) -> void:
             hand_clear_used.emit()
         Card.Effect.DUPLICATE:
             has_duplication = true
-        Card.Effect.CHANGE_MAX_HP:
-            max_health += card.max_hp_change
-        Card.Effect.CHANGE_MAX_MP:
-            max_mana += card.max_mp_change
+        Card.Effect.ADD_DAMAGE_TO_MAX_HP:
+            max_hp_modifier += 2
+        Card.Effect.CLEAR_ALL_EFFECTS:
+           max_hp_modifier = 0
+           damage_modifier = 1
+           has_fire = false
+           has_duplication = false
+           has_bell = false
+           has_shield = false

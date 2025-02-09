@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://bag17xw2urr58"]
+
+[ext_resource type="Texture2D" uid="uid://cmilnihtxk3f2" path="res://textures/items/fire.tres" id="1_v6dsg"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_jemk5"]
+
+[resource]
+script = ExtResource("2_jemk5")
+name = "Fire"
+description = "Remove next player card from the deck"
+health_cost = 0
+mana_cost = 2
+effect = 6
+background = 2
+icon = ExtResource("1_v6dsg")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

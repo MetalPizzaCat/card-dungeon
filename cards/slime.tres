@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dnr0kp7rog5rf"]
+
+[ext_resource type="Texture2D" uid="uid://dsdcgsjxn6u7x" path="res://textures/items/slime.tres" id="1_psjfe"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_4vpyn"]
+
+[resource]
+script = ExtResource("2_4vpyn")
+name = "Slime"
+description = "A magical ball of goo"
+health_cost = 4
+mana_cost = 0
+effect = 0
+background = 1
+icon = ExtResource("1_psjfe")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

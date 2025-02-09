@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b46qhrwy6ygy3"]
+
+[ext_resource type="Texture2D" uid="uid://ep4pkkj3axrp" path="res://textures/items/ratbell.tres" id="1_3yjga"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_okujf"]
+
+[resource]
+script = ExtResource("2_okujf")
+name = "Rat Bell"
+description = "Prevent next card magical effect, but not damage "
+health_cost = 0
+mana_cost = 11
+effect = 5
+background = 0
+icon = ExtResource("1_3yjga")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

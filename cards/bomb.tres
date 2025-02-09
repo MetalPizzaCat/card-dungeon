@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dhxwr5whp1ym7"]
+
+[ext_resource type="Texture2D" uid="uid://bxfv03wcxykeb" path="res://textures/items/bomb.tres" id="1_xtnx3"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_gnbte"]
+
+[resource]
+script = ExtResource("2_gnbte")
+name = "Bomb"
+description = "Discard all cards from hand"
+health_cost = 0
+mana_cost = 6
+effect = 7
+background = 0
+icon = ExtResource("1_xtnx3")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

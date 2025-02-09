@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://du7mbwvsbwnup"]
+
+[ext_resource type="Texture2D" uid="uid://dmgkx0jw3shk0" path="res://textures/items/shield.tres" id="1_680po"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_b0nh7"]
+
+[resource]
+script = ExtResource("2_b0nh7")
+name = "Shield"
+description = "Ignore all effects of the next card "
+health_cost = 0
+mana_cost = 0
+effect = 4
+background = 0
+icon = ExtResource("1_680po")
+max_hp_change = 0
+max_mp_change = 0
+damage_modifier = 0

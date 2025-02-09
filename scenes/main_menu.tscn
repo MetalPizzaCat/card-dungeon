@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://duelks2gfiai"]
+
+[ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_1xn57"]
+[ext_resource type="Texture2D" uid="uid://d0w2s8w8a66sa" path="res://textures/rock_wall.png" id="1_bwyvu"]
+[ext_resource type="Texture2D" uid="uid://cwjcqvnt4o8sy" path="res://scenes/gradient.tres" id="2_dcsgs"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="2_k1rnm"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1xn57")
+script = ExtResource("2_k1rnm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("1_bwyvu")
+stretch_mode = 1
+
+[node name="Gradient" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 721.0
+offset_right = 720.0
+offset_bottom = 2005.0
+rotation = 4.71239
+texture = ExtResource("2_dcsgs")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -376.0
+offset_top = -296.0
+offset_right = 384.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 124
+bbcode_enabled = true
+text = "[center]Card[/center]
+[center][wave]Dungeon[/wave][/center]"
+
+[node name="MainOptions" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -8.0
+offset_right = 192.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExitButton" type="Button" parent="MainOptions"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 648.0
+offset_right = 575.0
+offset_bottom = 696.0
+theme_override_font_sizes/font_size = 48
+text = "Game by MetalPizzaCat"
+
+[node name="OptionsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -8.0
+offset_right = 192.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="OptionsContainer"]
+visible = false
+layout_mode = 2
+text = "Back"
+
+[node name="ExitButton" type="Button" parent="OptionsContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="OptionsContainer/ExitButton" to="." method="_on_exit_button_pressed"]

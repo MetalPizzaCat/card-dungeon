@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcr3d4de0e2be"]
+[gd_scene load_steps=27 format=3 uid="uid://bcr3d4de0e2be"]
 
 [ext_resource type="Script" path="res://scenes/dungeon.gd" id="1_j228u"]
 [ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_ndho6"]
@@ -10,13 +10,22 @@
 [ext_resource type="Resource" uid="uid://dv8a3dyg8n8th" path="res://cards/plant.tres" id="6_dxsko"]
 [ext_resource type="Resource" uid="uid://b7rpkwiqd70qu" path="res://cards/small_mana.tres" id="7_ctuia"]
 [ext_resource type="Resource" uid="uid://c556oggh6qvms" path="res://cards/ritual.tres" id="8_ctm1v"]
-[ext_resource type="Texture2D" uid="uid://5ecnlppi5wun" path="res://icon.svg" id="8_ulyup"]
 [ext_resource type="Script" path="res://objects/player.gd" id="8_w3mj3"]
+[ext_resource type="Resource" uid="uid://b46qhrwy6ygy3" path="res://cards/ratbell.tres" id="9_erqft"]
+[ext_resource type="Resource" uid="uid://cglp2bdj81uj4" path="res://cards/elixir.tres" id="10_xyhds"]
 [ext_resource type="PackedScene" uid="uid://cjnbroxelm144" path="res://objects/stat_display.tscn" id="10_ya12q"]
+[ext_resource type="Resource" uid="uid://bag17xw2urr58" path="res://cards/fire.tres" id="11_hheoj"]
 [ext_resource type="Texture2D" uid="uid://84go5vmyn88j" path="res://textures/stats/health_empty.tres" id="11_rvmub"]
+[ext_resource type="Resource" uid="uid://dhxwr5whp1ym7" path="res://cards/bomb.tres" id="12_5431e"]
 [ext_resource type="Texture2D" uid="uid://cr5pte272iida" path="res://textures/stats/health_full.tres" id="12_oglok"]
+[ext_resource type="Resource" uid="uid://mec1ortjx0gn" path="res://cards/skel.tres" id="13_8frhe"]
 [ext_resource type="Texture2D" uid="uid://bbpdowscvd1bl" path="res://textures/stats/mana_empty.tres" id="13_m5m1f"]
 [ext_resource type="Texture2D" uid="uid://de6v3rcgaj3q5" path="res://textures/stats/mana_full.tres" id="14_cfnwc"]
+[ext_resource type="Resource" uid="uid://dnr0kp7rog5rf" path="res://cards/slime.tres" id="14_rbf84"]
+[ext_resource type="Resource" uid="uid://bv2xs5qj5l84v" path="res://cards/zombie.tres" id="15_tvqe6"]
+[ext_resource type="Resource" uid="uid://du7mbwvsbwnup" path="res://cards/shield.tres" id="16_xqucn"]
+[ext_resource type="Resource" uid="uid://dghtc0rhr2v8j" path="res://cards/rat.tres" id="17_7euih"]
+[ext_resource type="Texture2D" uid="uid://c1fhephy37xcn" path="res://textures/card_icon.svg" id="17_yuah5"]
 
 [node name="Dungeon" type="Control"]
 layout_mode = 3
@@ -24,7 +33,7 @@ anchors_preset = 0
 theme = ExtResource("1_ndho6")
 script = ExtResource("1_j228u")
 card_prefab = ExtResource("3_efa7a")
-possible_cards = Array[ExtResource("4_tiegs")]([ExtResource("5_hqfj0"), ExtResource("6_dxsko"), ExtResource("7_ctuia"), ExtResource("8_ctm1v"), ExtResource("5_hqfj0")])
+possible_cards = Array[ExtResource("4_tiegs")]([ExtResource("5_hqfj0"), ExtResource("6_dxsko"), ExtResource("7_ctuia"), ExtResource("8_ctm1v"), ExtResource("5_hqfj0"), ExtResource("9_erqft"), ExtResource("10_xyhds"), ExtResource("11_hheoj"), ExtResource("12_5431e"), ExtResource("13_8frhe"), ExtResource("14_rbf84"), ExtResource("15_tvqe6"), ExtResource("16_xqucn"), ExtResource("17_7euih")])
 deck_size = 12
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -124,7 +133,7 @@ color = Color(0.356619, 0.384451, 0.396185, 1)
 position = Vector2(96.0007, 176)
 rotation = -1.5708
 scale = Vector2(8.68976, 8.68976)
-texture = ExtResource("8_ulyup")
+texture = ExtResource("17_yuah5")
 
 [node name="CardsRemainingLabel" type="Label" parent="DeckDisplay"]
 layout_mode = 1

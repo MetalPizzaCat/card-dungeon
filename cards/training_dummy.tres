@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://bcat4t65o1rch"]
+
+[ext_resource type="Texture2D" uid="uid://bqpxhd4bqc7lo" path="res://textures/items/dummy.tres" id="1_ig5ed"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_jk46h"]
+
+[resource]
+script = ExtResource("2_jk46h")
+name = "Training"
+description = "Increase max health by 1"
+health_cost = 0
+mana_cost = 3
+effect = 9
+background = 2
+icon = ExtResource("1_ig5ed")
+max_hp_change = 1
+max_mp_change = 0
+damage_modifier = 0

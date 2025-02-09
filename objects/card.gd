@@ -12,8 +12,8 @@ enum Effect {
     DESTROY_NEXT_CARD,
     CLEAR_HAND,
     DUPLICATE,
-    CHANGE_MAX_HP,
-    CHANGE_MAX_MP,
+    ADD_DAMAGE_TO_MAX_HP,
+    CLEAR_ALL_EFFECTS
 }
 
 enum BackgroundType{
