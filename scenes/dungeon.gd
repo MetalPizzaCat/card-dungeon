@@ -4,14 +4,14 @@ extends Control
 @export var hand_size: int = 5
 @export var card_prefab: PackedScene
 @export var possible_cards: Array[Card] = []
-@export var main_menu_scene : PackedScene
+@export_file("*.tscn") var main_scene_path: String
 
 var used_cards: Array[PlayableCard] = []
 var deck: Array[Card] = []
 
 var deck_size: int:
 	get:
-		return manager.difficulty.deck_size if (manager != null and manager.difficulty != null) else 6 
+		return manager.difficulty.deck_size if (manager != null and manager.difficulty != null) else 6
 
 var playable_cards: Array[PlayableCard] = []
 
@@ -26,7 +26,11 @@ var playable_cards: Array[PlayableCard] = []
 @onready var mana_display: StatDisplay = $ManaDisplay
 
 @onready var manager: Manager = get_node("/root/GameManager")
-@onready var animation_player : AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+@onready var item_sound_player : AudioStreamPlayer = $Sounds/ItemCardSound
+@onready var spell_sound_player : AudioStreamPlayer = $Sounds/SpellCardSound
+@onready var enemy_sound_player : AudioStreamPlayer = $Sounds/EnemyCardSound
 
 @onready var current_deck_size: int:
 	get:
@@ -59,6 +63,7 @@ func draw_card() -> bool:
 
 
 func _ready() -> void:
+	manager.update_volume()
 	animation_player.play("fade_in")
 	if manager.difficulty != null:
 		print("playing: %s" % manager.difficulty.name)
@@ -76,7 +81,7 @@ func draw_initial_cards() -> void:
 	if possible_cards.is_empty():
 		printerr("No cards to draw")
 		return
-	for i in range(hand_size):
+	for i in range(0, hand_size):
 		if draw_card():
 			_re_id_cards()
 		else:
@@ -86,18 +91,31 @@ func draw_initial_cards() -> void:
 func use_card(card: Card, id: int) -> void:
 	if card.mana_cost <= player.mana:
 		player.apply_effect(card)
-	var playable: PlayableCard = playable_cards[id]
-	hand_box.remove_child(playable)
-	# we need to add visual card into discarded pile
-	_add_discarded_card(playable)
-	# remove the card from hand
-	playable_cards.erase(playable)
-	_re_id_cards()
-	if not draw_card() and playable_cards.is_empty():
+		match card.background:
+			Card.BackgroundType.ITEM:
+				item_sound_player.play()
+			Card.BackgroundType.SPELL:
+				spell_sound_player.play()
+			Card.BackgroundType.ENEMY:
+				enemy_sound_player.play()
+	if card.effect == Card.Effect.CLEAR_HAND:
+		_on_player_hand_clear_used()
+	else:
+		var playable: PlayableCard = playable_cards[id]
+		hand_box.remove_child(playable)
+		# we need to add visual card into discarded pile
+		_add_discarded_card(playable)
+		# remove the card from hand
+		playable_cards.erase(playable)
+		_re_id_cards()
+		draw_card()
+	if playable_cards.is_empty():
 		_start_next_round()
 
 
 func _start_next_round() -> void:
+	animation_player.play("next_round")
+	_clear_discarded_cards()
 	current_deck_size = deck_size
 	clear_count += 1
 	if clear_count < manager.difficulty.deck_additions.size():
@@ -155,4 +173,17 @@ func _on_player_max_mana_changed(max_mana: int) -> void:
 
 
 func _on_exit_button_pressed() -> void:
-	get_tree().change_scene_to_packed(main_menu_scene)
+	get_tree().change_scene_to_file(main_scene_path)
+	#get_tree().change_scene_to_packed(main_menu_scene)
+
+
+func _on_player_died() -> void:
+	animation_player.play("loss")
+
+
+func _on_player_hand_clear_used() -> void:
+	for card in playable_cards:
+		hand_box.remove_child(card)
+		_add_discarded_card(card)
+	playable_cards.clear()
+	draw_initial_cards()

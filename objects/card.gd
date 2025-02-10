@@ -17,9 +17,9 @@ enum Effect {
 }
 
 enum BackgroundType{
-    Item,
-    Enemy,
-    Spell
+    ITEM,
+    ENEMY,
+    SPELL
 }
 
 @export var name: String = "MISSINGNAME"
@@ -30,7 +30,7 @@ enum BackgroundType{
 
 @export var effect : Effect = Effect.NONE
 
-@export var background : BackgroundType = BackgroundType.Item
+@export var background : BackgroundType = BackgroundType.ITEM
 @export var icon : Texture
 
 @export_group("Special")

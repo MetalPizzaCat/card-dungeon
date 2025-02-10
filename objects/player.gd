@@ -6,13 +6,24 @@ signal health_changed(health: int)
 signal mana_changed(mana: int)
 signal max_health_changed(max_health: int)
 signal max_mana_changed(max_mana: int)
-signal hand_clear_used
 
 
-@export var max_health: int = 4;
+@export var max_health: int:
+    get:
+        return _max_health
+    set(value):
+        _max_health = value
+        health = min(max_health, health)
+        max_health_changed.emit(value)
 
 
-@export var max_mana: int = 4;
+@export var max_mana: int:
+    get:
+        return _max_mana
+    set(value):
+        _max_mana = value
+        mana = min(max_mana, mana)
+        max_mana_changed.emit(value)
 
 var mana: int = 4:
     get:
@@ -30,6 +41,8 @@ var health: int = 4:
 
 var _health: int = 4
 var _mana: int = 4
+var _max_health : int = 4
+var _max_mana : int = 4
 
 
 var damage_modifier: int = 1
@@ -51,6 +64,22 @@ func swap_stats() -> void:
     var h = health
     health = mana
     mana = h
+    if health <= 0:
+        died.emit()
+
+func get_save_data() -> Dictionary:
+    return {
+        "damage_modifier": damage_modifier,
+        "max_hp_modifier": max_hp_modifier,
+        "has_fire": has_fire,
+        "has_duplication": has_duplication,
+        "has_bell": has_bell,
+        "has_shield": has_shield,
+        "health" : health,
+        "max_health" : max_health,
+        "mana" : mana,
+        "max_mana" : max_mana
+    }
 
 func apply_effect(card: Card) -> void:
     if has_shield:
@@ -58,6 +87,8 @@ func apply_effect(card: Card) -> void:
         return
     add_health(-card.health_cost)
     add_mana(-card.mana_cost)
+    max_health += card.max_hp_change
+    max_mana += card.max_mp_change
     if has_bell:
         has_bell = false
         return
@@ -77,7 +108,8 @@ func apply_effect(card: Card) -> void:
         Card.Effect.DESTROY_NEXT_CARD:
             has_fire = true
         Card.Effect.CLEAR_HAND:
-            hand_clear_used.emit()
+            return
+            #hand_clear_used.emit()
         Card.Effect.DUPLICATE:
             has_duplication = true
         Card.Effect.ADD_DAMAGE_TO_MAX_HP:

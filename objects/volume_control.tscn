@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://c73fmv5je0fpg"]
+
+[ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_283ri"]
+[ext_resource type="Script" path="res://objects/volume_control.gd" id="1_c5bo7"]
+
+[node name="VolumeControl" type="Control"]
+layout_mode = 3
+anchor_right = 0.187
+anchor_bottom = 0.078
+offset_right = 0.639984
+offset_bottom = -0.16
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_283ri")
+script = ExtResource("1_c5bo7")
+
+[node name="SoundButton" type="Button" parent="."]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 116.0
+offset_bottom = 96.0
+text = "High"
+
+[node name="MusicButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 244.0
+offset_bottom = 96.0
+text = "High"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 237.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 36
+text = "Music"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 109.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 36
+text = "Sound"
+
+[connection signal="pressed" from="SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="MusicButton" to="." method="_on_music_button_pressed"]

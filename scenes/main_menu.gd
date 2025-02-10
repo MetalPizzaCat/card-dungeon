@@ -8,6 +8,8 @@ extends Control
 @onready var manager : Manager = get_node("/root/GameManager")
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
+var unlocked_difficulties : int = 0
+
 var buttons : Array[DifficultyButton] = []
 
 func _ready() -> void:

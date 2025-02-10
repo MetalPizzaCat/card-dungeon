@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://duelks2gfiai"]
+[gd_scene load_steps=15 format=3 uid="uid://duelks2gfiai"]
 
 [ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_1xn57"]
 [ext_resource type="Texture2D" uid="uid://d0w2s8w8a66sa" path="res://textures/rock_wall.png" id="1_bwyvu"]
@@ -7,7 +7,10 @@
 [ext_resource type="Script" path="res://game/difficulty.gd" id="3_agm0q"]
 [ext_resource type="Resource" uid="uid://dhjm8j1du734k" path="res://difficulties/easy.tres" id="4_h544q"]
 [ext_resource type="Resource" uid="uid://cirr7njydwnsv" path="res://difficulties/normal.tres" id="5_g73ta"]
+[ext_resource type="Resource" uid="uid://bf123ypktqdsr" path="res://difficulties/test.tres" id="6_2mqf1"]
 [ext_resource type="PackedScene" uid="uid://bcr3d4de0e2be" path="res://scenes/dungeon.tscn" id="6_5uyfd"]
+[ext_resource type="PackedScene" uid="uid://c73fmv5je0fpg" path="res://objects/volume_control.tscn" id="10_mmo8x"]
+[ext_resource type="AudioStream" uid="uid://e8sht22a7j40" path="res://music/menu.ogg" id="11_tag1o"]
 
 [sub_resource type="Animation" id="Animation_0wr1g"]
 length = 0.001
@@ -54,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_1xn57")
 script = ExtResource("2_k1rnm")
-difficulties = Array[ExtResource("3_agm0q")]([ExtResource("4_h544q"), ExtResource("5_g73ta")])
+difficulties = Array[ExtResource("3_agm0q")]([ExtResource("4_h544q"), ExtResource("5_g73ta"), ExtResource("6_2mqf1")])
 card_scene = ExtResource("6_5uyfd")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -124,9 +127,10 @@ anchor_bottom = 0.5
 offset_left = -192.0
 offset_top = -8.0
 offset_right = 192.0
-offset_bottom = 102.0
+offset_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 2
 
 [node name="DifficultyOptions" type="VBoxContainer" parent="OptionsContainer"]
 layout_mode = 2
@@ -140,6 +144,13 @@ libraries = {
 "": SubResource("AnimationLibrary_5gkix")
 }
 
+[node name="VolumeControl" parent="." instance=ExtResource("10_mmo8x")]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 16.64
+offset_bottom = 39.84
+
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -149,5 +160,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_tag1o")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="OptionsContainer/ExitButton2" to="." method="_on_exit_button_pressed"]

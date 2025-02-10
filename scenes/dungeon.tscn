@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bcr3d4de0e2be"]
+[gd_scene load_steps=37 format=3 uid="uid://bcr3d4de0e2be"]
 
 [ext_resource type="Script" path="res://scenes/dungeon.gd" id="1_j228u"]
 [ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_ndho6"]
@@ -26,7 +26,97 @@
 [ext_resource type="Resource" uid="uid://du7mbwvsbwnup" path="res://cards/shield.tres" id="16_xqucn"]
 [ext_resource type="Resource" uid="uid://dghtc0rhr2v8j" path="res://cards/rat.tres" id="17_7euih"]
 [ext_resource type="Texture2D" uid="uid://c1fhephy37xcn" path="res://textures/card_icon.svg" id="17_yuah5"]
-[ext_resource type="PackedScene" uid="uid://duelks2gfiai" path="res://scenes/main_menu.tscn" id="18_3ro3n"]
+[ext_resource type="AudioStream" uid="uid://cdny52jikw6od" path="res://music/dungeon.ogg" id="27_mvh35"]
+[ext_resource type="AudioStream" uid="uid://b12a8jtjcqgqq" path="res://sounds/hit1.ogg" id="28_iwcgl"]
+[ext_resource type="AudioStream" uid="uid://bge1u8uokcmdq" path="res://sounds/lever1.ogg" id="29_gny3j"]
+[ext_resource type="AudioStream" uid="uid://b2bso8jpevq6w" path="res://sounds/use_card2.ogg" id="30_1en3g"]
+
+[sub_resource type="Animation" id="Animation_sxqii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VictoryScreen:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -728)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VictoryScreen/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VictoryScreen/ExitButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NextRoundLabel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VictoryScreen/VictoryText:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VictoryScreen/DeathText:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_gvsy7"]
 resource_name = "fade_in"
@@ -82,9 +172,38 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VictoryScreen/VictoryText:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
-[sub_resource type="Animation" id="Animation_sxqii"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_aiady"]
+resource_name = "next_round"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NextRoundLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1.83333, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ni31j"]
+resource_name = "loss"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -92,10 +211,10 @@ tracks/0/path = NodePath("VictoryScreen:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -728)]
+"values": [Vector2(0, -728), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -104,10 +223,10 @@ tracks/1/path = NodePath("VictoryScreen/ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.433327, 1.36667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0.776471)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -116,28 +235,30 @@ tracks/2/path = NodePath("VictoryScreen/ExitButton:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.433327, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ColorRect:color")
+tracks/3/path = NodePath("VictoryScreen/DeathText:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qo0ib"]
 _data = {
 "RESET": SubResource("Animation_sxqii"),
 "fade_in": SubResource("Animation_gvsy7"),
+"loss": SubResource("Animation_ni31j"),
+"next_round": SubResource("Animation_aiady"),
 "victory": SubResource("Animation_27v4h")
 }
 
@@ -148,7 +269,7 @@ theme = ExtResource("1_ndho6")
 script = ExtResource("1_j228u")
 card_prefab = ExtResource("3_efa7a")
 possible_cards = Array[ExtResource("4_tiegs")]([ExtResource("5_hqfj0"), ExtResource("6_dxsko"), ExtResource("7_ctuia"), ExtResource("8_ctm1v"), ExtResource("5_hqfj0"), ExtResource("9_erqft"), ExtResource("10_xyhds"), ExtResource("11_hheoj"), ExtResource("12_5431e"), ExtResource("13_8frhe"), ExtResource("14_rbf84"), ExtResource("15_tvqe6"), ExtResource("16_xqucn"), ExtResource("17_7euih")])
-main_menu_scene = ExtResource("18_3ro3n")
+main_scene_path = "res://scenes/main_menu.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -199,6 +320,7 @@ offset_top = 184.0
 offset_right = 232.0
 offset_bottom = 544.0
 rotation = -1.55047
+card_id = null
 
 [node name="CardSpawnPos" type="Control" parent="."]
 anchors_preset = 0
@@ -274,7 +396,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VictoryScreen"]
+[node name="VictoryText" type="RichTextLabel" parent="VictoryScreen"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -290,6 +413,24 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
 text = "[wave][rainbow]Victory![/rainbow][/wave]"
+
+[node name="DeathText" type="RichTextLabel" parent="VictoryScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -144.0
+offset_right = 460.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 160
+bbcode_enabled = true
+text = "[shake][color=red]You lost![/color][/shake]"
 
 [node name="ExitButton" type="Button" parent="VictoryScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -317,6 +458,44 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="NextRoundLabel" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 360.0
+offset_top = 216.0
+offset_right = 1024.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[wave]Next floor![/wave]"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_mvh35")
+autoplay = true
+bus = &"Music"
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="ItemCardSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("28_iwcgl")
+bus = &"Sound"
+
+[node name="EnemyCardSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("29_gny3j")
+bus = &"Sound"
+
+[node name="SpellCardSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("30_1en3g")
+bus = &"Sound"
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
 [connection signal="mana_changed" from="Player" to="." method="_on_player_mana_changed"]
 [connection signal="max_health_changed" from="Player" to="." method="_on_player_max_health_changed"]

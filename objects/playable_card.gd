@@ -24,11 +24,11 @@ signal card_used(card: Card, playable_id: int)
 			health_label.text = str(-value.health_cost)
 			mana_label.text = str(-value.mana_cost)
 			match value.background:
-				Card.BackgroundType.Item:
+				Card.BackgroundType.ITEM:
 					background.texture = item_bg
-				Card.BackgroundType.Enemy:
+				Card.BackgroundType.ENEMY:
 					background.texture = enemy_bg
-				Card.BackgroundType.Spell:
+				Card.BackgroundType.SPELL:
 					background.texture = spell_bg
 			item_icon.texture = value.icon
 

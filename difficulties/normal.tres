@@ -1,9 +1,53 @@
-[gd_resource type="Resource" script_class="Difficulty" load_steps=2 format=3 uid="uid://cirr7njydwnsv"]
+[gd_resource type="Resource" script_class="Difficulty" load_steps=26 format=3 uid="uid://cirr7njydwnsv"]
 
 [ext_resource type="Script" path="res://game/difficulty.gd" id="1_mve0c"]
+[ext_resource type="Script" path="res://objects/deck.gd" id="1_wkt5l"]
+[ext_resource type="Script" path="res://objects/card.gd" id="2_5sq3w"]
+[ext_resource type="Resource" uid="uid://dv8a3dyg8n8th" path="res://cards/plant.tres" id="3_tcmk6"]
+[ext_resource type="Resource" uid="uid://du7mbwvsbwnup" path="res://cards/shield.tres" id="4_fsqal"]
+[ext_resource type="Resource" uid="uid://bcat4t65o1rch" path="res://cards/training_dummy.tres" id="5_i5g1h"]
+[ext_resource type="Resource" uid="uid://b7rpkwiqd70qu" path="res://cards/small_mana.tres" id="6_2usil"]
+[ext_resource type="Resource" uid="uid://cur4op2thv28u" path="res://cards/small_health.tres" id="7_omr8o"]
+[ext_resource type="Resource" uid="uid://d3vpvv3ydsdli" path="res://cards/spellbook.tres" id="8_klrbv"]
+[ext_resource type="Resource" uid="uid://bv2xs5qj5l84v" path="res://cards/zombie.tres" id="9_5i74c"]
+[ext_resource type="Resource" uid="uid://byy0xx2kdej15" path="res://cards/duplicator.tres" id="10_y8gl1"]
+[ext_resource type="Resource" uid="uid://bag17xw2urr58" path="res://cards/fire.tres" id="11_mtbnk"]
+[ext_resource type="Resource" uid="uid://dnr0kp7rog5rf" path="res://cards/slime.tres" id="12_23kfm"]
+[ext_resource type="Resource" uid="uid://ek6a6x3sdi3i" path="res://cards/magic_water.tres" id="13_odl36"]
+[ext_resource type="Resource" uid="uid://trdhapjfuvxv" path="res://cards/plague.tres" id="14_44dnd"]
+[ext_resource type="Resource" uid="uid://c556oggh6qvms" path="res://cards/ritual.tres" id="15_lf810"]
+[ext_resource type="Resource" uid="uid://cglp2bdj81uj4" path="res://cards/elixir.tres" id="16_2bgl0"]
+[ext_resource type="Resource" uid="uid://dhxwr5whp1ym7" path="res://cards/bomb.tres" id="17_fufou"]
+[ext_resource type="Resource" uid="uid://mec1ortjx0gn" path="res://cards/skel.tres" id="18_onqom"]
+
+[sub_resource type="Resource" id="Resource_ocjio"]
+script = ExtResource("1_wkt5l")
+cards = Array[ExtResource("2_5sq3w")]([ExtResource("3_tcmk6"), ExtResource("4_fsqal"), ExtResource("5_i5g1h"), ExtResource("6_2usil"), ExtResource("7_omr8o"), ExtResource("5_i5g1h"), ExtResource("8_klrbv"), ExtResource("7_omr8o")])
+
+[sub_resource type="Resource" id="Resource_gpv0j"]
+script = ExtResource("1_wkt5l")
+cards = Array[ExtResource("2_5sq3w")]([ExtResource("9_5i74c"), ExtResource("10_y8gl1"), ExtResource("11_mtbnk"), ExtResource("7_omr8o")])
+
+[sub_resource type="Resource" id="Resource_7q6h2"]
+script = ExtResource("1_wkt5l")
+cards = Array[ExtResource("2_5sq3w")]([ExtResource("9_5i74c"), ExtResource("12_23kfm"), ExtResource("7_omr8o"), ExtResource("13_odl36"), ExtResource("6_2usil")])
+
+[sub_resource type="Resource" id="Resource_757n4"]
+script = ExtResource("1_wkt5l")
+cards = Array[ExtResource("2_5sq3w")]([])
+
+[sub_resource type="Resource" id="Resource_jbxtr"]
+script = ExtResource("1_wkt5l")
+cards = Array[ExtResource("2_5sq3w")]([ExtResource("14_44dnd"), ExtResource("15_lf810"), ExtResource("16_2bgl0"), ExtResource("17_fufou"), ExtResource("17_fufou")])
+
+[sub_resource type="Resource" id="Resource_tdry6"]
+script = ExtResource("1_wkt5l")
+cards = Array[ExtResource("2_5sq3w")]([ExtResource("18_onqom"), ExtResource("7_omr8o"), ExtResource("5_i5g1h"), ExtResource("9_5i74c"), ExtResource("3_tcmk6")])
 
 [resource]
 script = ExtResource("1_mve0c")
 name = "Normal"
 description = "Clear the deck 6 times, with new enemies and spells added"
+deck_size = 18
 required_deck_clears = 6
+deck_additions = Array[ExtResource("1_wkt5l")]([SubResource("Resource_ocjio"), SubResource("Resource_gpv0j"), SubResource("Resource_7q6h2"), SubResource("Resource_757n4"), SubResource("Resource_jbxtr"), SubResource("Resource_tdry6")])
