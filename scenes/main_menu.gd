@@ -1,16 +1,18 @@
 extends Control
 
-@export var difficulties : Array[Difficulty] = []
-@export var card_scene : PackedScene
+@export var difficulties: Array[Difficulty] = []
+@export var card_scene: PackedScene
 
-@onready var options_box : VBoxContainer = $OptionsContainer/DifficultyOptions
+@onready var options_box: VBoxContainer = $OptionsContainer/DifficultyOptions
 
-@onready var manager : Manager = get_node("/root/GameManager")
-@onready var animation_player : AnimationPlayer = $AnimationPlayer
+@onready var manager: Manager = get_node("/root/GameManager")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var unlocked_difficulties : int = 0
+var loading: bool = false
 
-var buttons : Array[DifficultyButton] = []
+var unlocked_difficulties: int = 0
+
+var buttons: Array[DifficultyButton] = []
 
 func _ready() -> void:
 	for option in difficulties:
@@ -21,7 +23,10 @@ func _ready() -> void:
 		btn.selected.connect(_difficulty_selected)
 		
 
-func _difficulty_selected(diff : Difficulty) -> void:
+func _difficulty_selected(diff: Difficulty) -> void:
+	if loading:
+		return
+	loading = true
 	manager.difficulty = diff
 	animation_player.play("fade_out")
 	await animation_player.animation_finished

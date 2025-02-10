@@ -90,7 +90,6 @@ func draw_initial_cards() -> void:
 
 func use_card(card: Card, id: int) -> void:
 	if card.mana_cost <= player.mana:
-		player.apply_effect(card)
 		match card.background:
 			Card.BackgroundType.ITEM:
 				item_sound_player.play()
@@ -98,8 +97,11 @@ func use_card(card: Card, id: int) -> void:
 				spell_sound_player.play()
 			Card.BackgroundType.ENEMY:
 				enemy_sound_player.play()
-	if card.effect == Card.Effect.CLEAR_HAND:
-		_on_player_hand_clear_used()
+		if card.effect == Card.Effect.CLEAR_HAND:
+			_on_player_hand_clear_used()
+			return
+	if player.has_duplication:
+		player.has_duplication = false
 	else:
 		var playable: PlayableCard = playable_cards[id]
 		hand_box.remove_child(playable)
@@ -109,8 +111,14 @@ func use_card(card: Card, id: int) -> void:
 		playable_cards.erase(playable)
 		_re_id_cards()
 		draw_card()
-	if playable_cards.is_empty():
-		_start_next_round()
+		if playable_cards.is_empty():
+			_start_next_round()
+			
+	if card.mana_cost <= player.mana:
+		player.apply_effect(card)
+	if player.has_fire:
+		player.has_fire = false
+		possible_cards.erase(card)
 
 
 func _start_next_round() -> void:
@@ -187,3 +195,5 @@ func _on_player_hand_clear_used() -> void:
 		_add_discarded_card(card)
 	playable_cards.clear()
 	draw_initial_cards()
+	if playable_cards.is_empty():
+		_start_next_round()

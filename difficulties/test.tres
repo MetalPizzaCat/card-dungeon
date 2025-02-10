@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="Difficulty" load_steps=8 format=3 uid="uid://bf123ypktqdsr"]
+[gd_resource type="Resource" script_class="Difficulty" load_steps=7 format=3 uid="uid://bf123ypktqdsr"]
 
 [ext_resource type="Script" path="res://objects/deck.gd" id="1_8y3wc"]
 [ext_resource type="Script" path="res://objects/card.gd" id="2_aybfc"]
-[ext_resource type="Resource" uid="uid://d3vpvv3ydsdli" path="res://cards/spellbook.tres" id="4_vayqg"]
-[ext_resource type="Resource" uid="uid://c556oggh6qvms" path="res://cards/ritual.tres" id="5_y7g6r"]
-[ext_resource type="Resource" uid="uid://ek6a6x3sdi3i" path="res://cards/magic_water.tres" id="9_22qga"]
+[ext_resource type="Resource" uid="uid://byy0xx2kdej15" path="res://cards/duplicator.tres" id="3_t6qp3"]
+[ext_resource type="Resource" uid="uid://du7mbwvsbwnup" path="res://cards/shield.tres" id="4_osq4r"]
 [ext_resource type="Script" path="res://game/difficulty.gd" id="10_5nobc"]
 
 [sub_resource type="Resource" id="Resource_sy262"]
 script = ExtResource("1_8y3wc")
-cards = Array[ExtResource("2_aybfc")]([ExtResource("4_vayqg"), ExtResource("9_22qga"), ExtResource("5_y7g6r")])
+cards = Array[ExtResource("2_aybfc")]([ExtResource("3_t6qp3"), ExtResource("4_osq4r")])
 
 [resource]
 script = ExtResource("10_5nobc")

@@ -13,11 +13,11 @@
 
 [sub_resource type="Resource" id="Resource_sy262"]
 script = ExtResource("1_x6oxp")
-cards = Array[ExtResource("2_euerq")]([ExtResource("3_n54bg"), ExtResource("4_ktjuy"), ExtResource("5_o6ayt"), ExtResource("6_7mo0u"), ExtResource("7_we124"), ExtResource("7_we124"), ExtResource("3_n54bg"), ExtResource("5_o6ayt")])
+cards = Array[ExtResource("2_euerq")]([ExtResource("3_n54bg"), ExtResource("4_ktjuy"), ExtResource("9_35ehe"), ExtResource("6_7mo0u"), ExtResource("7_we124"), ExtResource("3_n54bg"), ExtResource("5_o6ayt")])
 
 [sub_resource type="Resource" id="Resource_gvrys"]
 script = ExtResource("1_x6oxp")
-cards = Array[ExtResource("2_euerq")]([ExtResource("8_5cq4s"), ExtResource("8_5cq4s"), ExtResource("3_n54bg"), ExtResource("7_we124")])
+cards = Array[ExtResource("2_euerq")]([ExtResource("8_5cq4s"), ExtResource("3_n54bg"), ExtResource("7_we124"), ExtResource("7_we124"), ExtResource("6_7mo0u")])
 
 [sub_resource type="Resource" id="Resource_qnsjq"]
 script = ExtResource("1_x6oxp")

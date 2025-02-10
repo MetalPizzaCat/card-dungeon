@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgdrfwtew8mhi"]
+[gd_scene load_steps=10 format=3 uid="uid://bgdrfwtew8mhi"]
 
 [ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_1qgkf"]
 [ext_resource type="Script" path="res://objects/playable_card.gd" id="1_yvedv"]
@@ -7,6 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://dml0ml0l8vugp" path="res://textures/rooms/room_item.tres" id="3_yhkgl"]
 [ext_resource type="Texture2D" uid="uid://bptkfyl353rvx" path="res://textures/rooms/room_enemy.tres" id="4_bd36c"]
 [ext_resource type="FontFile" uid="uid://dwefhx08v0nht" path="res://font/MorePerfectDOSVGA.ttf" id="7_cta6k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yd4c"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c60aa"]
 
 [node name="Card" type="Control"]
 texture_filter = 1
@@ -120,6 +131,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_7yd4c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7yd4c")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_c60aa")
 flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

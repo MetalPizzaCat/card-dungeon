@@ -166,4 +166,12 @@ stream = ExtResource("11_tag1o")
 autoplay = true
 bus = &"Music"
 
+[node name="DebugLabel" type="Label" parent="."]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 512.0
+offset_right = 755.0
+offset_bottom = 16.0
+text = "This is a pre-release build"
+
 [connection signal="pressed" from="OptionsContainer/ExitButton2" to="." method="_on_exit_button_pressed"]
