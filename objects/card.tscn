@@ -30,7 +30,6 @@ grow_vertical = 2
 pivot_offset = Vector2(104, 176)
 theme = ExtResource("1_1qgkf")
 script = ExtResource("1_yvedv")
-card_id = null
 item_bg = ExtResource("3_yhkgl")
 enemy_bg = ExtResource("4_bd36c")
 spell_bg = ExtResource("2_0mn7q")

@@ -2,11 +2,13 @@ extends Control
 
 
 @export var hand_size: int = 5
+@export var space_between_cards : int = 200
 @export var card_prefab: PackedScene
+@export var discarded_card_control_prefab : PackedScene
 @export var possible_cards: Array[Card] = []
 @export_file("*.tscn") var main_scene_path: String
 
-var used_cards: Array[PlayableCard] = []
+var used_cards: Array[DiscardedCardControl] = []
 var deck: Array[Card] = []
 
 var deck_size: int:
@@ -15,7 +17,7 @@ var deck_size: int:
 
 var playable_cards: Array[PlayableCard] = []
 
-@onready var hand_box: HBoxContainer = $Hand
+@onready var hand_box: Control = $HandPosition
 @onready var player: Player = $Player
 @onready var card_spawn_pos: Control = $CardSpawnPos
 
@@ -28,9 +30,11 @@ var playable_cards: Array[PlayableCard] = []
 @onready var manager: Manager = get_node("/root/GameManager")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@onready var item_sound_player : AudioStreamPlayer = $Sounds/ItemCardSound
-@onready var spell_sound_player : AudioStreamPlayer = $Sounds/SpellCardSound
-@onready var enemy_sound_player : AudioStreamPlayer = $Sounds/EnemyCardSound
+@onready var item_sound_player: AudioStreamPlayer = $Sounds/ItemCardSound
+@onready var spell_sound_player: AudioStreamPlayer = $Sounds/SpellCardSound
+@onready var enemy_sound_player: AudioStreamPlayer = $Sounds/EnemyCardSound
+
+@onready var new_card_spawn_pos: Control = $NewCardSpawnPos
 
 @onready var current_deck_size: int:
 	get:
@@ -55,6 +59,11 @@ func draw_card() -> bool:
 	var card = possible_cards.pick_random()
 	var playable = card_prefab.instantiate() as PlayableCard
 	hand_box.add_child(playable)
+	playable.move_from_to(
+		new_card_spawn_pos.global_position, 
+		-90,
+		hand_box.global_position + Vector2(playable_cards.size() * space_between_cards, 0), 
+		0)
 	playable_cards.append(playable)
 	playable.card_used.connect(use_card)
 	playable.card = card
@@ -82,6 +91,7 @@ func draw_initial_cards() -> void:
 		printerr("No cards to draw")
 		return
 	for i in range(0, hand_size):
+		await get_tree().create_timer(0.1).timeout
 		if draw_card():
 			_re_id_cards()
 		else:
@@ -104,7 +114,6 @@ func use_card(card: Card, id: int) -> void:
 		player.has_duplication = false
 	else:
 		var playable: PlayableCard = playable_cards[id]
-		hand_box.remove_child(playable)
 		# we need to add visual card into discarded pile
 		_add_discarded_card(playable)
 		# remove the card from hand
@@ -146,20 +155,29 @@ func _clear_discarded_cards() -> void:
 	used_cards.clear()
 
 func _add_discarded_card(card: PlayableCard) -> void:
-	used_cards.append(card)
-	card_spawn_pos.add_child(card)
+	var start_pos = card.global_position
+	hand_box.remove_child(card)
+	if discarded_card_control_prefab == null:
+		card.queue_free()
+		return
+	var cntrl = discarded_card_control_prefab.instantiate() as DiscardedCardControl
+	cntrl.add_card(card)
+	cntrl.global_position = start_pos
+	used_cards.append(cntrl)
+	card_spawn_pos.add_child(cntrl)
 	card.playable = false
-	card.rotation_degrees = randf_range(-70, 120)
-	card.position = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+	cntrl.move_to(start_pos, 0, card_spawn_pos.global_position + Vector2(randf_range(-20, 20), randf_range(-20, 20)), randf_range(-70, 120))
+	
 	if used_cards.size() > 6:
 		card_spawn_pos.remove_child(used_cards[0])
 		used_cards[0].queue_free()
 		used_cards.remove_at(0)
 
-
 func _re_id_cards() -> void:
 	var i = 0
 	for card in playable_cards:
+		if card.card_id != i:
+			card.global_position = hand_box.global_position + Vector2(i * space_between_cards, 0)
 		card.card_id = i
 		i += 1
 
