@@ -26,7 +26,7 @@ cards = Array[ExtResource("2_5sq3w")]([ExtResource("3_tcmk6"), ExtResource("4_fs
 
 [sub_resource type="Resource" id="Resource_gpv0j"]
 script = ExtResource("1_wkt5l")
-cards = Array[ExtResource("2_5sq3w")]([ExtResource("9_5i74c"), ExtResource("10_y8gl1"), ExtResource("11_mtbnk"), ExtResource("7_omr8o"), ExtResource("6_2usil")])
+cards = Array[ExtResource("2_5sq3w")]([ExtResource("9_5i74c"), ExtResource("10_y8gl1"), ExtResource("11_mtbnk"), ExtResource("7_omr8o"), ExtResource("6_2usil"), ExtResource("11_mtbnk")])
 
 [sub_resource type="Resource" id="Resource_7q6h2"]
 script = ExtResource("1_wkt5l")

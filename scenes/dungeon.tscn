@@ -525,6 +525,14 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "55"
 
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 132.0
+offset_bottom = 64.0
+text = "Back"
+
 [node name="VictoryScreen" type="Control" parent="."]
 anchors_preset = 0
 offset_top = -728.0
@@ -591,7 +599,6 @@ libraries = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -640,27 +647,10 @@ bus = &"Sound"
 stream = ExtResource("30_1en3g")
 bus = &"Sound"
 
-[node name="Card2" parent="." instance=ExtResource("3_efa7a")]
-visible = false
-layout_mode = 1
-offset_left = 968.0
-offset_top = -32.0
-offset_right = 1160.0
-offset_bottom = 328.0
-rotation = -1.54799
-
-[node name="BackButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 132.0
-offset_bottom = 64.0
-text = "Back"
-
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
 [connection signal="mana_changed" from="Player" to="." method="_on_player_mana_changed"]
 [connection signal="max_health_changed" from="Player" to="." method="_on_player_max_health_changed"]
 [connection signal="max_mana_changed" from="Player" to="." method="_on_player_max_mana_changed"]
-[connection signal="pressed" from="VictoryScreen/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VictoryScreen/ExitButton" to="." method="_on_exit_button_pressed"]

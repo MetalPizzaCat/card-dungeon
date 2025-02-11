@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_sy262"]
 script = ExtResource("1_8y3wc")
-cards = Array[ExtResource("2_aybfc")]([ExtResource("3_t6qp3"), ExtResource("4_uifbk")])
+cards = Array[ExtResource("2_aybfc")]([ExtResource("3_t6qp3"), ExtResource("4_uifbk"), ExtResource("3_t6qp3")])
 
 [resource]
 script = ExtResource("10_5nobc")

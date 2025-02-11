@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_jemk5")
 name = "Fire"
-description = "Remove next player card from the deck"
+description = "Remove next played card from the deck"
 health_cost = 0
 mana_cost = 2
 effect = 6

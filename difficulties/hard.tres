@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Difficulty" load_steps=28 format=3 uid="uid://5x44mnw4vtl3"]
+[gd_resource type="Resource" script_class="Difficulty" load_steps=29 format=3 uid="uid://5x44mnw4vtl3"]
 
 [ext_resource type="Script" path="res://objects/deck.gd" id="1_n6ias"]
 [ext_resource type="Script" path="res://game/difficulty.gd" id="2_blhlr"]
@@ -15,13 +15,14 @@
 [ext_resource type="Resource" uid="uid://dnr0kp7rog5rf" path="res://cards/slime.tres" id="11_ykdsf"]
 [ext_resource type="Resource" uid="uid://dghtc0rhr2v8j" path="res://cards/rat.tres" id="12_h46gk"]
 [ext_resource type="Resource" uid="uid://cglp2bdj81uj4" path="res://cards/elixir.tres" id="14_bnkp6"]
+[ext_resource type="Resource" uid="uid://bag17xw2urr58" path="res://cards/fire.tres" id="14_sghbn"]
 [ext_resource type="Resource" uid="uid://mec1ortjx0gn" path="res://cards/skel.tres" id="15_s3kgj"]
 [ext_resource type="Resource" uid="uid://b46qhrwy6ygy3" path="res://cards/ratbell.tres" id="16_1jbwn"]
 [ext_resource type="Resource" uid="uid://c556oggh6qvms" path="res://cards/ritual.tres" id="17_bqbx6"]
 
 [sub_resource type="Resource" id="Resource_660gm"]
 script = ExtResource("1_n6ias")
-cards = Array[ExtResource("2_i36yr")]([ExtResource("3_1o2x8"), ExtResource("4_cqhiy"), ExtResource("5_jejli"), ExtResource("6_u3dim"), ExtResource("7_ogwp6"), ExtResource("8_5b1pe"), ExtResource("9_oy5qx"), ExtResource("3_xrhn2"), ExtResource("10_2nnxs"), ExtResource("11_ykdsf"), ExtResource("12_h46gk")])
+cards = Array[ExtResource("2_i36yr")]([ExtResource("3_1o2x8"), ExtResource("4_cqhiy"), ExtResource("5_jejli"), ExtResource("6_u3dim"), ExtResource("7_ogwp6"), ExtResource("8_5b1pe"), ExtResource("9_oy5qx"), ExtResource("3_xrhn2"), ExtResource("10_2nnxs"), ExtResource("11_ykdsf"), ExtResource("12_h46gk"), ExtResource("6_u3dim"), ExtResource("14_sghbn"), ExtResource("14_sghbn")])
 
 [sub_resource type="Resource" id="Resource_e4jkx"]
 script = ExtResource("1_n6ias")

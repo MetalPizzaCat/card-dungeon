@@ -18,6 +18,7 @@ extends Control
 
 var used_cards: Array[DiscardedCardControl] = []
 var deck: Array[Card] = []
+var bad_cards : Array[Card] = []
 
 var deck_size: int:
 	get:
@@ -77,9 +78,10 @@ func draw_card() -> bool:
 		card_pool = possible_cards.filter(func(p : Card) : return p.background == Card.BackgroundType.ITEM || p.background == Card.BackgroundType.SPELL)
 	else:
 		card_pool = possible_cards
+	card_pool = card_pool.filter(func(p : Card):return p not in bad_cards)
 	if card_pool.is_empty():
 		card_pool = [health_card]
-	var card = card_pool.pick_random()
+	var card = card_pool .pick_random()
 	var playable = card_prefab.instantiate() as PlayableCard
 	hand_box.add_child(playable)
 	playable.move_from_to(
@@ -149,7 +151,7 @@ func use_card(card: Card, id: int) -> void:
 			_start_next_round()
 	if player.has_fire:
 		player.has_fire = false
-		possible_cards.erase(card)
+		bad_cards.append(card)
 	if card.mana_cost <= player.mana:
 		player.apply_effect(card)
 
