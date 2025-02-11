@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgdrfwtew8mhi"]
+[gd_scene load_steps=12 format=3 uid="uid://bgdrfwtew8mhi"]
 
 [ext_resource type="Theme" uid="uid://dgdf26xsndhdf" path="res://themes/game_theme.tres" id="1_1qgkf"]
 [ext_resource type="Script" path="res://objects/playable_card.gd" id="1_yvedv"]
@@ -6,7 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://d4h5stejrsc21" path="res://textures/items/mana.tres" id="3_ccrmr"]
 [ext_resource type="Texture2D" uid="uid://dml0ml0l8vugp" path="res://textures/rooms/room_item.tres" id="3_yhkgl"]
 [ext_resource type="Texture2D" uid="uid://bptkfyl353rvx" path="res://textures/rooms/room_enemy.tres" id="4_bd36c"]
+[ext_resource type="Texture2D" uid="uid://dtmvrsy0qk4qd" path="res://textures/card_decor2.png" id="6_23vdj"]
 [ext_resource type="FontFile" uid="uid://dwefhx08v0nht" path="res://font/MorePerfectDOSVGA.ttf" id="7_cta6k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11g66"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yd4c"]
 bg_color = Color(0, 0, 0, 1)
@@ -44,6 +53,21 @@ offset_bottom = -8.23203
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.105516, 0.148989, 0.195895, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("6_23vdj")
+stretch_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_11g66")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

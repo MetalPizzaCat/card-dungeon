@@ -11,6 +11,8 @@ config_version=5
 [application]
 
 config/name="CardDungeon"
+config/description="A simple game about an ever changing dungeon"
+config/version="0.2"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"

@@ -14,4 +14,4 @@ background = 1
 icon = ExtResource("1_nclr0")
 max_hp_change = 0
 max_mp_change = 0
-damage_modifier = 0
+damage_modifier = 2

@@ -1,11 +1,19 @@
 extends Control
 
 
+## Max amount of cards that  player can hold
 @export var hand_size: int = 5
+## How much space should there be from top left corner of one card to the next
 @export var space_between_cards : int = 200
+## Prefab for the cards that player can interact with
 @export var card_prefab: PackedScene
+## Prefab used for proper rotation animation for the discarded cards
 @export var discarded_card_control_prefab : PackedScene
+## What cards to fallback to if no difficultly is selected
 @export var possible_cards: Array[Card] = []
+## Card to spawn when player is in a very bad position
+@export var health_card : Card
+## Path to the scene to return on loss/victory. Has to be specified as a path to avoid cyclical dependency in resource
 @export_file("*.tscn") var main_scene_path: String
 
 var used_cards: Array[DiscardedCardControl] = []
@@ -22,7 +30,7 @@ var playable_cards: Array[PlayableCard] = []
 @onready var card_spawn_pos: Control = $CardSpawnPos
 
 @onready var deck_size_label: Label = $DeckDisplay/CardsRemainingLabel
-@onready var deck_display: Control = $DeckDisplay/InfoBg
+@onready var deck_display: Control = $DeckDisplay
 
 @onready var health_display: StatDisplay = $HealthDisplay
 @onready var mana_display: StatDisplay = $ManaDisplay
@@ -33,6 +41,9 @@ var playable_cards: Array[PlayableCard] = []
 @onready var item_sound_player: AudioStreamPlayer = $Sounds/ItemCardSound
 @onready var spell_sound_player: AudioStreamPlayer = $Sounds/SpellCardSound
 @onready var enemy_sound_player: AudioStreamPlayer = $Sounds/EnemyCardSound
+
+@onready var current_floor_label : Label  = $FloorInfoBox/CurrentFloorLabel
+@onready var total_floors_label : Label = $FloorInfoBox/TotalFloorsLabel
 
 @onready var new_card_spawn_pos: Control = $NewCardSpawnPos
 
@@ -56,7 +67,19 @@ func draw_card() -> bool:
 		return false
 	if current_deck_size <= 0:
 		return false
-	var card = possible_cards.pick_random()
+	var enemy_count = playable_cards.filter(func(p : PlayableCard) : return p.card.background == Card.BackgroundType.ENEMY).size()
+	var card_pool : Array[Card] = []
+	if enemy_count > 3 and player.health > 3:
+		card_pool = possible_cards.filter(func(p : Card) : return p.background == Card.BackgroundType.ITEM)
+	elif enemy_count > 2 and player.health < 2:
+		card_pool = [health_card]
+	elif enemy_count > 3 and player.health < 5 or enemy_count > 1 and player.health < 2:
+		card_pool = possible_cards.filter(func(p : Card) : return p.background == Card.BackgroundType.ITEM || p.background == Card.BackgroundType.SPELL)
+	else:
+		card_pool = possible_cards
+	if card_pool.is_empty():
+		card_pool = [health_card]
+	var card = card_pool.pick_random()
 	var playable = card_prefab.instantiate() as PlayableCard
 	hand_box.add_child(playable)
 	playable.move_from_to(
@@ -78,6 +101,8 @@ func _ready() -> void:
 		print("playing: %s" % manager.difficulty.name)
 		possible_cards.clear()
 		possible_cards.append_array(manager.difficulty.deck_additions[clear_count].cards)
+		total_floors_label.text = str(manager.difficulty.required_deck_clears)
+		current_floor_label.text = '1'
 	current_deck_size = deck_size
 	draw_initial_cards()
 	health_display.max_value = player.max_health
@@ -122,12 +147,11 @@ func use_card(card: Card, id: int) -> void:
 		draw_card()
 		if playable_cards.is_empty():
 			_start_next_round()
-			
-	if card.mana_cost <= player.mana:
-		player.apply_effect(card)
 	if player.has_fire:
 		player.has_fire = false
 		possible_cards.erase(card)
+	if card.mana_cost <= player.mana:
+		player.apply_effect(card)
 
 
 func _start_next_round() -> void:
@@ -135,6 +159,7 @@ func _start_next_round() -> void:
 	_clear_discarded_cards()
 	current_deck_size = deck_size
 	clear_count += 1
+	current_floor_label.text = str(clear_count + 1)
 	if clear_count < manager.difficulty.deck_additions.size():
 		possible_cards.append_array(manager.difficulty.deck_additions[clear_count].cards)
 	if clear_count >= manager.difficulty.required_deck_clears:
@@ -215,3 +240,7 @@ func _on_player_hand_clear_used() -> void:
 	draw_initial_cards()
 	if playable_cards.is_empty():
 		_start_next_round()
+
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file(main_scene_path)

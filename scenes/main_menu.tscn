@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://game/difficulty.gd" id="3_agm0q"]
 [ext_resource type="Resource" uid="uid://dhjm8j1du734k" path="res://difficulties/easy.tres" id="4_h544q"]
 [ext_resource type="Resource" uid="uid://cirr7njydwnsv" path="res://difficulties/normal.tres" id="5_g73ta"]
-[ext_resource type="Resource" uid="uid://bf123ypktqdsr" path="res://difficulties/test.tres" id="6_2mqf1"]
 [ext_resource type="PackedScene" uid="uid://bcr3d4de0e2be" path="res://scenes/dungeon.tscn" id="6_5uyfd"]
+[ext_resource type="Resource" uid="uid://5x44mnw4vtl3" path="res://difficulties/hard.tres" id="6_asc24"]
 [ext_resource type="PackedScene" uid="uid://c73fmv5je0fpg" path="res://objects/volume_control.tscn" id="10_mmo8x"]
 [ext_resource type="AudioStream" uid="uid://e8sht22a7j40" path="res://music/menu.ogg" id="11_tag1o"]
 
@@ -57,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_1xn57")
 script = ExtResource("2_k1rnm")
-difficulties = Array[ExtResource("3_agm0q")]([ExtResource("4_h544q"), ExtResource("5_g73ta"), ExtResource("6_2mqf1")])
+difficulties = Array[ExtResource("3_agm0q")]([ExtResource("4_h544q"), ExtResource("5_g73ta"), ExtResource("6_asc24")])
 card_scene = ExtResource("6_5uyfd")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -167,11 +167,17 @@ autoplay = true
 bus = &"Music"
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_left = 512.0
 offset_right = 755.0
 offset_bottom = 16.0
 text = "This is a pre-release build"
+
+[node name="DifficultyLevel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="OptionsContainer/ExitButton2" to="." method="_on_exit_button_pressed"]
